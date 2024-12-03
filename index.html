@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Gêneros Musicais</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+</head>
+<body>
+    <header>
+        <h1>Relatório sobre Gêneros Musicais</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">Populares</a>
+        </nav>
+    </header>
+    <main class="graficos-section">
+        <section id="graficos-container" class="graficos-container">
+            <!-- Gráfico de Pizza -->
+            <div id="grafico-pizza" style="width: 100%; height: 400px;"></div>
+
+            <!-- Gráfico de Barras -->
+            <div id="grafico-barras" style="width: 100%; height: 400px;"></div>
+        </section>
+    </main>
+    <footer>
+        <p>Desenvolvido por luiz</p>
+    </footer>
+    <script type="module" src="graficos/common.js"></script>
+    <script type="module" src="graficos/informacoesGlobais.js"></script>
+    <script type="module" src="graficos/quantidadeUsuarios.js"></script>
+    <script>
+        // Gráfico de Pizza (Distribuição de Gêneros Musicais)
+        var dadosPizza = {
+            labels: ['Pop', 'Rock', 'Hip-Hop', 'Eletrônica', 'Jazz', 'Reggae'],
+            values: [40, 25, 15, 10, 5, 5],  // Percentual de popularidade dos gêneros
+            type: 'pie'
+        };
+        
+        var layoutPizza = {
+            title: 'Distribuição de Gêneros Musicais',
+        };
+        
+        Plotly.newPlot('grafico-pizza', [dadosPizza], layoutPizza);
+
+        // Gráfico de Barras (Número de Ouvintes por Gênero)
+        var dadosBarras = {
+            x: ['Pop', 'Rock', 'Hip-Hop', 'Eletrônica', 'Jazz', 'Reggae'],
+            y: [5000000, 3000000, 2000000, 1500000, 500000, 400000],  // Número de ouvintes (em milhões)
+            type: 'bar',
+            marker: {
+                color: ['#ff6347', '#4682b4', '#ffeb3b', '#8e44ad', '#2ecc71', '#f39c12'],  // Cores para cada barra
+            }
+        };
+        
+        var layoutBarras = {
+            title: 'Número de Ouvintes por Gênero Musical (em milhões)',
+            xaxis: { title: 'Gêneros Musicais' },
+            yaxis: { title: 'Número de Ouvintes (em milhões)' }
+        };
+        
+        Plotly.newPlot('grafico-barras', [dadosBarras], layoutBarras);
+    </script>
+</body>
+</html>
